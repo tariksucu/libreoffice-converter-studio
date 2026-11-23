@@ -6,7 +6,7 @@ import unittest
 from converterstudio import VERSION, api
 from converterstudio.api import ApiError, Canceled, Client
 
-from .fakes import Transport, error, network, reply
+from .fakes import Body, Transport, error, network, reply
 
 BASE = "https://converter.studio/api"
 KEY = "cvs_live_test_key"
@@ -234,6 +234,16 @@ class DownloadTest(unittest.TestCase):
             client(transport).download(BASE + "/jobs/j/download", self.target)
         self.assertEqual(raised.exception.message, "This file has expired.")
         self.assertFalse(os.path.exists(self.target))
+
+
+class ResponseTest(unittest.TestCase):
+    def test_reads_the_whole_body_without_a_negative_count(self):
+        # http.client on Python 3.8 and 3.9 refuses read(-1); Body refuses it on every Python.
+        for args in ((), (None,), (-1,)):
+            self.assertEqual(api.Response(200, {}, Body(b'{"ok": true}')).read(*args), b'{"ok": true}')
+        response = api.Response(200, {}, Body(b"0123456789"))
+        self.assertEqual((response.read(4), response.read(0), response.read()), (b"0123", b"", b"456789"))
+        self.assertEqual(api.Response(204, {}, None).read(), b"")
 
 
 class ErrorsTest(unittest.TestCase):

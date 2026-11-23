@@ -99,8 +99,18 @@ class Response:
         self.headers = headers
         self._stream = stream
 
-    def read(self, size=-1):
-        return self._stream.read(size) if self._stream is not None else b""
+    def read(self, size=None):
+        """Up to `size` bytes of the body, or all of it when `size` is None or negative.
+
+        All of it is asked for as read() with no count, never read(-1): http.client on Python 3.8
+        and 3.9 (LibreOffice 24.2's and 24.8's own) refuses -1 ("negative count"), and from 3.10
+        until 3.12.9 and 3.13.2 it returns a chunked answer's framing along with the body for -1.
+        """
+        if self._stream is None:
+            return b""
+        if size is None or size < 0:
+            return self._stream.read()
+        return self._stream.read(size)
 
     def close(self):
         if self._stream is not None:
