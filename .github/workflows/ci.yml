@@ -20,11 +20,18 @@ permissions:
 
 jobs:
   check:
-    runs-on: ubuntu-latest
+    name: Check (Python ${{ matrix.python }})
+    runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        # The oldest and the newest Python that LibreOffice brings or uses.
-        python: ['3.9', '3.13']
+        include:
+          # The oldest Python the extension meets: LibreOffice 24.2, its minimum, brings 3.8 in
+          # its own builds (Windows, macOS, the Linux packages of documentfoundation.org).
+          # setup-python has 3.8 for Ubuntu 24.04 but not for 26.04 (ubuntu-latest).
+          - { python: '3.8', os: ubuntu-24.04 }
+          # The newest: LibreOffice 26.8, the current release, brings 3.13.
+          - { python: '3.13', os: ubuntu-latest }
 
     steps:
       - uses: actions/checkout@v4
