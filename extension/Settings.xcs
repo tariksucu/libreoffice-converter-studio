@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Converter Studio's settings, kept in the LibreOffice user profile. The API key is not here:
+     it is kept in LibreOffice's password container (see pythonpath/converterstudio/office.py). -->
+<oor:component-schema xmlns:oor="http://openoffice.org/2001/registry"
+                      xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                      oor:name="Settings" oor:package="studio.converter.libreoffice" xml:lang="en-US">
+  <templates/>
+  <component>
+    <group oor:name="General">
+      <!-- The API's address; a test server on this computer may use http. -->
+      <prop oor:name="BaseUrl" oor:type="xs:string">
+        <value>https://converter.studio/api</value>
+      </prop>
+      <!-- Credits a file may cost before the extension asks (0: always ask). -->
+      <prop oor:name="MaxCredits" oor:type="xs:int">
+        <value>20</value>
+      </prop>
+      <!-- Text recognition: the language ("auto" or the API's code) and the result
+           ("document": a new document; "text": plain text at the cursor). -->
+      <prop oor:name="OcrLanguage" oor:type="xs:string">
+        <value>auto</value>
+      </prop>
+      <prop oor:name="OcrOutput" oor:type="xs:string">
+        <value>document</value>
+      </prop>
+    </group>
+  </component>
+</oor:component-schema>

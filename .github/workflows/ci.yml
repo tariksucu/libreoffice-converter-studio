@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  pull_request:
+    paths-ignore:
+      - '**.md'
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+
+# Cancel in-progress runs for the same branch/PR.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # The oldest and the newest Python that LibreOffice brings or uses.
+        python: ['3.9', '3.13']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Lint (ruff)
+        if: matrix.python == '3.13'
+        run: |
+          python -m pip install ruff==0.14.5
+          ruff check .
+          ruff format --check .
+
+      # The pure logic, with a fake API (and a local one on 127.0.0.1): no network.
+      - name: Unit tests
+        run: python -m unittest discover -s tests -t . -v
+
+      - name: Build the extension
+        run: python tools/build.py
+
+  libreoffice:
+    # Installs the .oxt into a throwaway profile of Ubuntu's LibreOffice and starts it.
+    runs-on: ubuntu-24.04
+    needs: check
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install LibreOffice
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libreoffice-writer-nogui python3-uno
+
+      - name: Build the extension
+        run: python3 tools/build.py
+
+      - name: Install it and start LibreOffice
+        run: python3 tools/smoke.py dist/converter-studio-*.oxt

@@ -1,0 +1,31 @@
+# Lint and format settings for the extension's Python (ruff). LibreOffice 24.2's own builds bring
+# Python 3.8 or later, so nothing newer is allowed.
+target-version = "py38"
+line-length = 110
+
+[lint]
+select = ["E", "F", "W", "B", "I", "UP", "S"]
+ignore = [
+  "E501",  # long lines: the formatter decides, strings stay whole
+  "S101",  # assert (tests)
+  "S310",  # urllib with a URL: the API's address is checked (https, or http on this computer)
+  "S603",  # subprocess in dev/ tools
+  "S607",
+  "S108",  # temporary paths in tests
+  "UP031", # "%" formatting
+  "B904",  # raise … from: the API errors are meant to replace the low-level ones
+]
+
+[lint.per-file-ignores]
+# The package's own XML files, not data from elsewhere.
+"tools/*" = ["S314"]
+"tests/*" = ["S314"]
+# terminate() ends the office while it answers, so the call may fail with the bridge's end.
+"tools/smoke.py" = ["S110"]
+"extension/converter_studio.py" = ["S110"]
+"extension/pythonpath/converterstudio/api.py" = ["S110"]
+"extension/pythonpath/converterstudio/office.py" = ["S110", "S112"]
+"dev/*" = ["S110", "S112", "E402"]
+
+[lint.isort]
+known-third-party = ["uno", "unohelper", "com"]

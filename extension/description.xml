@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description xmlns="http://openoffice.org/extensions/description/2006"
+             xmlns:d="http://openoffice.org/extensions/description/2006"
+             xmlns:l="http://libreoffice.org/extensions/description/2011"
+             xmlns:xlink="http://www.w3.org/1999/xlink">
+  <identifier value="studio.converter.libreoffice"/>
+  <version value="1.0.0"/>
+  <platform value="all"/>
+
+  <display-name>
+    <name lang="en">Converter Studio</name>
+    <name lang="tr">Converter Studio</name>
+  </display-name>
+
+  <publisher>
+    <name xlink:href="https://converter.studio" lang="en">Converter Studio</name>
+  </publisher>
+
+  <icon>
+    <default xlink:href="icons/converter-studio.png"/>
+    <high-contrast xlink:href="icons/converter-studio-hc.png"/>
+  </icon>
+
+  <extension-description>
+    <src xlink:href="description/en.txt" lang="en"/>
+    <src xlink:href="description/tr.txt" lang="tr"/>
+  </extension-description>
+
+  <registration>
+    <simple-license accept-by="user" suppress-on-update="true">
+      <license-text xlink:href="registration/license.txt" lang="en"/>
+    </simple-license>
+  </registration>
+
+  <dependencies>
+    <l:LibreOffice-minimal-version d:name="LibreOffice 24.2" value="24.2"/>
+  </dependencies>
+
+  <update-information>
+    <src xlink:href="https://raw.githubusercontent.com/tariksucu/libreoffice-converter-studio/main/update/converter-studio.update.xml"/>
+  </update-information>
+</description>

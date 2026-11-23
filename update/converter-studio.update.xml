@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- LibreOffice's Extension Manager reads this (description.xml, <update-information>) to offer
+     new versions. Change it on every release, after the GitHub release with the .oxt exists. -->
+<description xmlns="http://openoffice.org/extensions/update/2006"
+             xmlns:d="http://openoffice.org/extensions/description/2006"
+             xmlns:l="http://libreoffice.org/extensions/description/2011"
+             xmlns:xlink="http://www.w3.org/1999/xlink">
+  <identifier value="studio.converter.libreoffice"/>
+  <version value="1.0.0"/>
+  <dependencies>
+    <l:LibreOffice-minimal-version d:name="LibreOffice 24.2" value="24.2"/>
+  </dependencies>
+  <update-download>
+    <src xlink:href="https://github.com/tariksucu/libreoffice-converter-studio/releases/download/v1.0.0/converter-studio-1.0.0.oxt"/>
+  </update-download>
+  <release-notes>
+    <src xlink:href="https://github.com/tariksucu/libreoffice-converter-studio/blob/main/CHANGELOG.md" lang="en"/>
+  </release-notes>
+</description>

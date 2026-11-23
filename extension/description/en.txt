@@ -1,0 +1,7 @@
+Converter Studio brings into LibreOffice the files it cannot open, through the Converter Studio service (converter.studio):
+
+- Insert iPhone photos (HEIC, HEIF), AVIF pictures and camera RAW photos (CR2, NEF, ARW, DNG) into Writer, Calc, Impress and Draw.
+- Recognise the text of a scanned PDF or a photo (OCR) in 19 languages: as a new document with paragraphs and tables, or as plain text at the cursor.
+- Open EPUB, MOBI and AZW3 e-books as Writer documents.
+
+The files you convert are sent to converter.studio, converted with the credits of your account, and deleted; nothing else about your documents is sent. You need a Converter Studio account and an API key: free accounts get credits every day. The menu is Converter Studio, in Writer, Calc, Impress and Draw.

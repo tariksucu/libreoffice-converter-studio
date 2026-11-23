@@ -1,0 +1,7 @@
+Converter Studio, LibreOffice'in açamadığı dosyaları Converter Studio hizmetiyle (converter.studio) LibreOffice'e getirir:
+
+- iPhone fotoğraflarını (HEIC, HEIF), AVIF resimlerini ve fotoğraf makinesi RAW dosyalarını (CR2, NEF, ARW, DNG) Writer, Calc, Impress ve Draw belgelerine ekler.
+- Taranmış bir PDF'in ya da fotoğrafın metnini 19 dilde tanır (OCR): paragraflar ve tablolarla yeni bir belge olarak ya da imlecin olduğu yere düz metin olarak.
+- EPUB, MOBI ve AZW3 e-kitaplarını Writer belgesi olarak açar.
+
+Dönüştürdüğünüz dosyalar converter.studio'ya gönderilir, hesabınızın kredileriyle dönüştürülür ve silinir; belgeleriniz hakkında başka hiçbir şey gönderilmez. Bir Converter Studio hesabı ve API anahtarı gerekir: ücretsiz hesaplar her gün kredi alır. Menü, Writer, Calc, Impress ve Draw'daki Converter Studio menüsüdür.
